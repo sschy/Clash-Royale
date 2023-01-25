@@ -61,6 +61,7 @@ public class MyCardMgr1 : MonoBehaviour
 		// TODO:
 		yield return new WaitForSeconds(delay);
 		print($"PromoteFromDeck");
+		//这里有个小BUG预览区区牌可以动,因为索引index是int不给值默认为0
 		previewCard.GetComponent<MyCardView>().index = i;
 
 		previewCard.localScale = Vector3.one;

@@ -1,7 +1,7 @@
 {
-"Date": "2023/1/25 22:53:46",
+"Date": "2023/1/26 0:20:29",
 "UnityVersion": "2019.1.14f1",
 "traceEvents": [
-{"name": "Building Use Asset Database (fastest)", "ph": "X", "dur": 1405.8, "tid": 1, "ts": 6159, "pid": 1}
+{"name": "Building Use Asset Database (fastest)", "ph": "X", "dur": 1407.6, "tid": 1, "ts": 6221, "pid": 1}
 ]
 }
