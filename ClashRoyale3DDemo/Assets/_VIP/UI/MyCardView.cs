@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyCardComponent : MonoBehaviour
+public class MyCardView : MonoBehaviour
 {
 	public MyCard data;
+	public int index;
 
 	private void Awake()
 	{

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityRoyale;
 
-public class 卡牌管理器 : MonoBehaviour
+public class MyCardMgr1 : MonoBehaviour
 {
+	public static MyCardMgr1 instacne;
 	public GameObject cardPrefab; // 卡牌预制体
 
 	public Transform[] cards = new Transform[4]; // 四张活动卡牌
@@ -16,11 +17,16 @@ public class 卡牌管理器 : MonoBehaviour
 
 	public Transform canvas; // 动态创建的卡牌要放在canvas下
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+		instacne = this;
+
+	}
     void Start()
     {
 		canvas.gameObject.SetActive(true);
 
+		//开始发牌前创建一张
 		StartCoroutine(卡牌创建到预览区(.1f)); // 0.1
 
 		for (int i = 0; i < cards.Length; i++)
@@ -36,14 +42,15 @@ public class 卡牌管理器 : MonoBehaviour
 		yield return new WaitForSeconds(delay);
 		print($"AddToDeck");
 
-		int iCard = Random.Range(0, MyCardModel.instance.list.Count);
-		MyCard card = MyCardModel.instance.list[iCard];
-		GameObject cardPrefab = Resources.Load<GameObject>(card.cardPrefab);
+		int iCard = Random.Range(0, MyCardModel.instance.list.Count);//随机得到卡牌索引
+		MyCard card = MyCardModel.instance.list[iCard];//获取卡牌
+		GameObject cardPrefab = Resources.Load<GameObject>(card.cardPrefab);//加载卡牌
 
-		previewCard = Instantiate(cardPrefab, canvas).transform;
+		previewCard = Instantiate(cardPrefab, canvas).transform;//实例卡牌
 
-		previewCard.GetComponent<MyCardComponent>().data = card;
+		previewCard.GetComponent<MyCardView>().data = card;
 
+		//移动到预览区
 		previewCard.position = startPos.position;
 		previewCard.localScale = Vector3.one * 0.5f;
 		previewCard.DOMove(endPos.position, .2f);
@@ -54,6 +61,7 @@ public class 卡牌管理器 : MonoBehaviour
 		// TODO:
 		yield return new WaitForSeconds(delay);
 		print($"PromoteFromDeck");
+		previewCard.GetComponent<MyCardView>().index = i;
 
 		previewCard.localScale = Vector3.one;
 		previewCard.transform.DOMove(cards[i].position, .2f + 0.05f * i); // .2, .25, .3, .35

@@ -20,7 +20,9 @@ public partial class MyCard
 
 
 }
-
+/// <summary>
+/// 卡牌实体类存储所有卡牌
+/// </summary>
 [Serializable]
 public partial class MyCardModel
 {
