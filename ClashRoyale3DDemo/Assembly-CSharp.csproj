@@ -68,8 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Tutorials\Addressables\LoadTest.cs" />
+    <Compile Include="Assets\_VIP\UI\MyAIBase.cs" />
+    <Compile Include="Assets\_VIP\UI\MyBulidingAI.cs" />
     <Compile Include="Assets\_VIP\UI\MyCardMgr1.cs" />
     <Compile Include="Assets\_VIP\UI\MyCardView.cs" />
+    <Compile Include="Assets\_VIP\UI\MyPlaceableMgr.cs" />
+    <Compile Include="Assets\_VIP\UI\MyPlaceableView.cs" />
+    <Compile Include="Assets\_VIP\UI\MyProjectile.cs" />
+    <Compile Include="Assets\_VIP\UI\MyUnitAI.cs" />
     <Compile Include="Assets\91make\DataGen\ConfigScript\MyCardModel.cs" />
     <Compile Include="Assets\91make\DataGen\ConfigScript\MyPlaceableModel.cs" />
     <Compile Include="Assets\91make\DataGen\Table2Script.cs" />

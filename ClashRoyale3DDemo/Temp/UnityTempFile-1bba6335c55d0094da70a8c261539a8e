@@ -314,8 +314,14 @@
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
 Assets\_Tutorials\Addressables\LoadTest.cs
+Assets\_VIP\UI\MyAIBase.cs
+Assets\_VIP\UI\MyBulidingAI.cs
 Assets\_VIP\UI\MyCardMgr1.cs
 Assets\_VIP\UI\MyCardView.cs
+Assets\_VIP\UI\MyPlaceableMgr.cs
+Assets\_VIP\UI\MyPlaceableView.cs
+Assets\_VIP\UI\MyProjectile.cs
+Assets\_VIP\UI\MyUnitAI.cs
 Assets\91make\DataGen\ConfigScript\MyCardModel.cs
 Assets\91make\DataGen\ConfigScript\MyPlaceableModel.cs
 Assets\91make\DataGen\Table2Script.cs

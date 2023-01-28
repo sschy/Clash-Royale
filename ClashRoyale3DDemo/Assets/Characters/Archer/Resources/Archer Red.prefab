@@ -1536,6 +1536,8 @@ GameObject:
   - component: {fileID: 1920537943675698485}
   - component: {fileID: 5337654603367310687}
   - component: {fileID: 167357322037240506}
+  - component: {fileID: 9138701080262915761}
+  - component: {fileID: 2143880769348107455}
   m_Layer: 0
   m_Name: Archer Red
   m_TagString: Untagged
@@ -1727,6 +1729,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9138701080262915761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537164977549460556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27602f8de64aad24d866c8fe5b71d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    faciton: 2
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &2143880769348107455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537164977549460556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ac2bc491c8f9a4d8af5ca218a08dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  state: 0
+  lastBlowTime: 0
+  Projectile: {fileID: 953002537907380271, guid: e12f67aa396803b4db1f156b4de6a91f,
+    type: 3}
+  firePos: {fileID: 5884568896103621353}
 --- !u!1 &5557141645663679012
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,12 +24,18 @@ public partial class MyPlaceable
 
 		public Placeable.PlaceableTarget targetType;
 
+	    /// <summary>
+	    /// 攻击速度也就是间隔
+	    /// </summary>
 		public float attackRatio;
 
 		public float damagePerAttack;
 
 		public float attackRange;
 
+	/// <summary>
+	/// 血量
+	/// </summary>
 		public float hitPoints;
 
 		public string attackClip;
@@ -41,6 +47,8 @@ public partial class MyPlaceable
 		public float lifeTime;
 
 		public float damagePerSecond;
+
+
 
 
 }
@@ -69,6 +77,7 @@ public partial class MyPlaceableModel
 			speed = 4f,
 			lifeTime = 5f,
 			damagePerSecond = 1f,
+
 		});
 
 		list.Add(new MyPlaceable(){
@@ -107,6 +116,7 @@ public partial class MyPlaceableModel
 			speed = 2f,
 			lifeTime = 5f,
 			damagePerSecond = 1f,
+
 		});
 
 

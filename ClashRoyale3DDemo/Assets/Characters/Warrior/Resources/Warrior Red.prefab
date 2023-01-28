@@ -985,6 +985,8 @@ GameObject:
   - component: {fileID: 7321173093633038108}
   - component: {fileID: 1479946322843236336}
   - component: {fileID: 1281781896090838426}
+  - component: {fileID: 5476465943140528729}
+  - component: {fileID: -1084068046191827889}
   m_Layer: 0
   m_Name: Warrior Red
   m_TagString: Untagged
@@ -1175,6 +1177,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5476465943140528729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701704621631426976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27602f8de64aad24d866c8fe5b71d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &-1084068046191827889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701704621631426976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ac2bc491c8f9a4d8af5ca218a08dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!1 &5709216429091363622
 GameObject:
   m_ObjectHideFlags: 0

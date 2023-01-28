@@ -1385,6 +1385,8 @@ GameObject:
   - component: {fileID: 590187671794222575}
   - component: {fileID: 3368897962327348152}
   - component: {fileID: 5035176704641411430}
+  - component: {fileID: 944091684204621015}
+  - component: {fileID: 6799306895341392422}
   m_Layer: 0
   m_Name: Mage Red
   m_TagString: Untagged
@@ -1579,6 +1581,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &944091684204621015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122871589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27602f8de64aad24d866c8fe5b71d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    faciton: 2
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &6799306895341392422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122871589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ac2bc491c8f9a4d8af5ca218a08dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  state: 0
+  lastBlowTime: 0
+  Projectile: {fileID: 2348266241764958831, guid: 16df5ca33880bf7409922364f4bdcc3d,
+    type: 3}
+  firePos: {fileID: 1773102264}
 --- !u!1 &1135473222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,11 +3016,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1797861100}
     m_Modifications:
-    - target: {fileID: 1052028774637471983, guid: d43ab4448d19fb949a5003f639b54609,
-        type: 3}
-      propertyPath: m_Name
-      value: FaceFire
-      objectReference: {fileID: 0}
     - target: {fileID: 1052028774637471982, guid: d43ab4448d19fb949a5003f639b54609,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3025,6 +3070,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052028774637471983, guid: d43ab4448d19fb949a5003f639b54609,
+        type: 3}
+      propertyPath: m_Name
+      value: FaceFire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d43ab4448d19fb949a5003f639b54609, type: 3}

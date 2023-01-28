@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 1
   attackRatio: 1.5
   damagePerAttack: 1
-  attackRange: 6
+  attackRange: 8
   hitPoints: 8
   attackClip: {fileID: 8300000, guid: ea24447fac497f842a10e72bdc439513, type: 3}
   dieClip: {fileID: 8300000, guid: 6998e74c54689924ab83927a1d15c902, type: 3}

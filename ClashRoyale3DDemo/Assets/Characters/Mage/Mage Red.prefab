@@ -2966,11 +2966,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1797861100}
     m_Modifications:
-    - target: {fileID: 1052028774637471983, guid: d43ab4448d19fb949a5003f639b54609,
-        type: 3}
-      propertyPath: m_Name
-      value: FaceFire
-      objectReference: {fileID: 0}
     - target: {fileID: 1052028774637471982, guid: d43ab4448d19fb949a5003f639b54609,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3025,6 +3020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052028774637471983, guid: d43ab4448d19fb949a5003f639b54609,
+        type: 3}
+      propertyPath: m_Name
+      value: FaceFire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d43ab4448d19fb949a5003f639b54609, type: 3}
