@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using System;
+using UnityRoyale;
 
 public class MyCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
@@ -43,31 +44,7 @@ public class MyCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 print("命中地面，没有变小兵");
                 //1隐藏改卡牌
                 GetComponent<CanvasGroup>().alpha = 0;
-                //2从卡牌数组中找到该卡牌数据
-                for (int i = 0; i < data.placeablesIndices.Length; i++)
-                {
-                    int unitId = data.placeablesIndices[i];
-                    MyPlaceable p = null;
-                    for (int j = 0; j < MyPlaceableModel.instance.list.Count; j++)
-                    {
-                        if (MyPlaceableModel.instance.list[j].id == unitId)
-                        {
-                            p = MyPlaceableModel.instance.list[j];
-                            break;
-                        }
-                    }
-                    //3取出小兵之间的相对偏移，不定就会站在一起
-                    Vector3 offset = data.relativeOffsets[i];
-
-                    //4生成卡牌对应的小兵数组，并且将其设置为预览用的卡牌
-                    GameObject unit = Instantiate(Resources.Load<GameObject>(p.associatedPrefab), previewHolder);
-                    unit.transform.localPosition = offset;
-
-                    MyPlaceable p2 = p.Clone();
-                    p2.faciton = UnityRoyale.Placeable.Faction.Player;//设置为玩家阵营
-                    unit.GetComponent<MyPlaceableView>().data = p2;
-                }
-
+                CreatePlaceable(data,hit.point, previewHolder,Placeable.Faction.Player);
 
                 isDragging = true;
             }
@@ -95,6 +72,46 @@ public class MyCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
         }
     }
+    /// <summary>
+    /// 根据兵种数据创建到场地中
+    /// </summary>
+    /// <param name="cardData"></param>
+    /// <param name="Pos"></param>
+    /// <param name="parent"></param>
+    /// <param name="faction"></param>
+    public static void CreatePlaceable(MyCard cardData,Vector3 Pos,Transform parent,Placeable.Faction faction)
+    {
+       
+        //2从卡牌数组中找到该卡牌数据
+        for (int i = 0; i < cardData.placeablesIndices.Length; i++)
+        {
+            int unitId = cardData.placeablesIndices[i];
+            MyPlaceable p = null;
+            for (int j = 0; j < MyPlaceableModel.instance.list.Count; j++)
+            {
+                if (MyPlaceableModel.instance.list[j].id == unitId)
+                {
+                    p = MyPlaceableModel.instance.list[j];
+                    break;
+                }
+            }
+            //3取出小兵之间的相对偏移，不定就会站在一起
+            Vector3 offset = cardData.relativeOffsets[i];
+
+            //4生成卡牌对应的小兵数组，并且将其设置为预览用的卡牌
+            GameObject unit = Instantiate(Resources.Load<GameObject>(p.associatedPrefab), parent);
+            unit.transform.localPosition = offset;
+            unit.transform.position = Pos + offset;
+
+          
+
+            MyPlaceable p2 = p.Clone();
+            p2.faciton = faction;//设置为玩家阵营
+            MyPlaceableView view = unit.GetComponent<MyPlaceableView>();
+            view.data = p2;         
+        }
+    }
+
     public void OnPointerUp(PointerEventData eventData)
     {
         Ray ray = mainCamera.ScreenPointToRay(eventData.position);
