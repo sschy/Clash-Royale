@@ -297,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 1266146836806838514, guid: 6a174af42b4a07c4f9f60c7e43596ef0,
         type: 3}
       propertyPath: data.hitPoints
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4625204856652622288, guid: 6a174af42b4a07c4f9f60c7e43596ef0,
         type: 3}
@@ -360,6 +360,7 @@ MonoBehaviour:
   mine: []
   his: []
   trHisTower: {fileID: 150649841}
+  trMyTower: {fileID: 714716739}
   myProjList: []
   hisProjList: []
 --- !u!4 &155975304
@@ -2872,6 +2873,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e52c160328d68b4799c73e4e5cd0ed7, type: 3}
+--- !u!4 &714716739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2043351312737516455, guid: 8e48b83c0b0714047bd04968bcb595a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1031442351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &794235178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,7 +3058,7 @@ PrefabInstance:
     - target: {fileID: 5618583206633694883, guid: 8e48b83c0b0714047bd04968bcb595a2,
         type: 3}
       propertyPath: data.hitPoints
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2043351312737478529, guid: 8e48b83c0b0714047bd04968bcb595a2,
         type: 3}

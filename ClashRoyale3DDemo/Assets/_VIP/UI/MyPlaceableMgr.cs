@@ -22,7 +22,7 @@ public class MyPlaceableMgr : MonoBehaviour
     public static MyPlaceableMgr instance;
     public List<MyPlaceableView> mine = new List<MyPlaceableView>();
     public List<MyPlaceableView> his = new List<MyPlaceableView>();
-    public Transform trHisTower;//国王塔地点
+    public Transform trHisTower,trMyTower;//国王塔地点
     //投掷物
     public List<MyProjectile> myProjList = new List<MyProjectile>();
     public List<MyProjectile> hisProjList = new List<MyProjectile>();
@@ -33,12 +33,59 @@ public class MyPlaceableMgr : MonoBehaviour
     private void Start()
     {
         his.Add(trHisTower.GetComponent<MyPlaceableView>());
+        mine.Add(trMyTower.GetComponent<MyPlaceableView>());
+        
     }
     private void Update()
     {
-        for (int i = 0; i < mine.Count; i++)
+        //我方AI更新
+        UpdatePlaceable(mine);
+        //敌方AI更新
+        UpdatePlaceable(his);
+        //子弹飞行与命中运算
+        UpdateMyProjectile(myProjList);
+        UpdateMyProjectile(hisProjList);
+    }
+
+    private void UpdateMyProjectile(List<MyProjectile> projectiles)
+    {
+        for (int i = 0; i < projectiles.Count; i++)
         {
-            MyPlaceableView view = mine[i];//获取兵种数据
+            //遍历每一个投掷物
+            var proj = projectiles[i];
+            //进度等于时间*速度
+            proj.progress += Time.deltaTime * proj.speed;
+            //transform默认在角度或者中心，提高一点飞行位置
+            proj.transform.position = Vector3.Lerp(proj.caster.transform.position, proj.caster.target.transform.position + Vector3.up, proj.progress);
+            if (proj.progress >= 1)
+            {
+                MyUnitAI castertAI = proj.caster as MyUnitAI;
+                MyAIBase targetAI = proj.caster.target;
+                //伤害计算
+                castertAI.OnDealDameage();
+                //敌人被击中目标血量小于0
+                if (targetAI.GetComponent<MyPlaceableView>().data.hitPoints <= 0)
+                {
+                    if (targetAI.state != AIState.Die)
+                    {
+                        targetAI.state = AIState.Die;
+                        Animator animator = targetAI.GetComponent<Animator>();
+                        if (animator != null)
+                        {
+                            animator.SetTrigger("IsDead");
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void UpdatePlaceable(List<MyPlaceableView> info)
+    {
+        for (int i = 0; i < info.Count; i++)
+        {
+            MyPlaceableView view = info[i];//获取兵种数据
             MyPlaceable data = view.data;
             MyAIBase ai = view.GetComponent<MyAIBase>();//获取兵种AI
             NavMeshAgent nav = ai.GetComponent<NavMeshAgent>();
@@ -46,34 +93,37 @@ public class MyPlaceableMgr : MonoBehaviour
             //根据当前兵种AI当前状态执行状态机，这里没使用复杂的状态机
             switch (ai.state)
             {
+                
                 case AIState.Idle:
+                    //塔的话跳出                  
+                    if (ai is MyBulidingAI)
+                    {
+                        break;
+                    }
                     //找场景内最近的敌人
                     ai.target = FindNearestEnemy(ai.transform.position, data.faciton);
                     if (ai.target != null)
                     {
                         print($"找到最近的敌人{ai.gameObject.name}");
-                        ai.state = AIState.Seek;
+                        ai.state = AIState.Seek;                       
                         nav.enabled = true;
                         animator.SetBool("IsMoving", true);
                     }
-                    //检测是否有敌人在范围内
-                    //GetComponent<CanvasGroup>().DOFade();
-                    //有敌人切换到Seek状态
                     break;
                 case AIState.Seek:
-                    //往敌人方向前进
-                    nav.destination = trHisTower.position;//设置目标点                               
-                                                          //是否在攻击范围内
+                    nav.destination = ai.target.transform.position;//设置目标点    
+                    //是否在攻击范围内
                     if (ISInAttackRange(view.transform.position, ai.target.transform.position, view.data.attackRange))
-                    {
-                        nav.enabled = false;//停止移动
+                    {                      
+                            //往敌人方向前进                           
+                            nav.enabled = false;//停止移动1                                           
                         //进去攻击状态
                         ai.state = AIState.Attack;
                     }
                     //有进入攻击状态
                     break;
                 case AIState.Attack:
-                    if (ai.target.GetComponent<MyPlaceableView>().data.hitPoints<=0)
+                    if (ai.target.GetComponent<MyPlaceableView>().data.hitPoints <= 0)
                     {
                         ai.state = AIState.Idle;
                         break;
@@ -108,39 +158,10 @@ public class MyPlaceableMgr : MonoBehaviour
                     //不在切换为IDle
                     break;
                 case AIState.Die:
-
+                    //nav.enabled= false;
+                    //Destroy(info[i]);
+                    //info.RemoveAt(i);
                     break;
-            }
-        }
-        //子弹飞行与命中运算
-        for (int i = 0; i < myProjList.Count; i++)
-        {
-            //遍历每一个投掷物
-            var proj = myProjList[i];
-            //进度等于时间*速度
-            proj.progress += Time.deltaTime * proj.speed;
-            //transform默认在角度或者中心，提高一点飞行位置
-            proj.transform.position = Vector3.Lerp(proj.caster.transform.position, proj.caster.target.transform.position + Vector3.up, proj.progress);
-            if (proj.progress>=1)
-            {
-                MyUnitAI castertAI = proj.caster as MyUnitAI;
-                MyAIBase targetAI=  proj.caster.target;
-                //伤害计算
-                castertAI.OnDealDameage();
-                //敌人被击中目标血量小于0
-                if (targetAI.GetComponent<MyPlaceableView>().data. hitPoints<=0)
-                {
-                    if (targetAI.state!=AIState.Die)
-                    {
-                        targetAI.state = AIState.Die;
-                        Animator animator = targetAI.GetComponent<Animator>();
-                        if (animator != null)
-                        {
-                            animator.SetTrigger("IsDead");
-                        }
-                      
-                    }
-                }
             }
         }
     }

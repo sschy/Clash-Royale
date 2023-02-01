@@ -79,9 +79,9 @@ public class MyCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     /// <param name="Pos"></param>
     /// <param name="parent"></param>
     /// <param name="faction"></param>
-    public static void CreatePlaceable(MyCard cardData,Vector3 Pos,Transform parent,Placeable.Faction faction)
+    public static List<MyPlaceableView> CreatePlaceable(MyCard cardData,Vector3 Pos,Transform parent,Placeable.Faction faction)
     {
-       
+       List<MyPlaceableView> viewList=new List<MyPlaceableView>();
         //2从卡牌数组中找到该卡牌数据
         for (int i = 0; i < cardData.placeablesIndices.Length; i++)
         {
@@ -108,8 +108,11 @@ public class MyCardView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             MyPlaceable p2 = p.Clone();
             p2.faciton = faction;//设置为玩家阵营
             MyPlaceableView view = unit.GetComponent<MyPlaceableView>();
-            view.data = p2;         
+            view.data = p2;
+            viewList.Add(view);
+          
         }
+        return viewList;
     }
 
     public void OnPointerUp(PointerEventData eventData)
